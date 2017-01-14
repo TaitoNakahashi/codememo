@@ -1,0 +1,520 @@
+@charset "utf-8";
+// ===================================================================
+// style.css
+// ===================================================================
+
+/* import */
+@import "settings";
+@import "reset";
+@import "mixin";
+
+// ===================================================================
+// codememo style.css
+// ===================================================================
+
+html,body {
+	height: 100%;
+	color: $WHITE;
+	font-family: $base_font;
+	font-size: 10px;
+
+	.clearfix {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	span {
+		-ms-transform: rotate(0.001deg);
+		-moz-transform: rotate(0.001deg);
+		-webkit-transform: rotate(0.05deg);
+		-webkit-text-shadow: 0 0 0.1px rgba(0,0,0,0.5);
+	}
+
+	.hide {
+		display: none;
+	}
+
+	.flex-container {
+		display: -webkit-flex; /* Safari */
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.cell-container {
+		letter-spacing: -0.5em;
+		.cell-item {
+			display: inline-block;
+			letter-spacing: normal;
+		}
+	}
+
+	.button {
+		cursor: pointer;
+		color: $WHITE;
+		// -webkit-appearance: none;
+		// -webkit-font-smoothing: antialiased;
+		outline: none;
+		border: none;
+		border-radius: 7px;
+		text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+		box-sizing: border-box;
+		transition: filter 350ms ease;
+		&:hover {
+			filter: brightness(85%);
+		}
+		&:active {
+			filter: brightness(70%);
+		}
+	}
+
+	.text-button {
+		cursor: pointer;
+		line-height: 1.8;
+		letter-spacing: 0.2rem;
+		font-size: 1.8rem;
+		transition: color 250ms ease;
+		&:hover {
+			color: $GRAY;
+		}
+		span {
+			vertical-align: middle;
+		}
+		i{
+			font-size: 0.8em;
+		}
+	}
+
+	.balloon-menu {
+		padding: 20px;
+		font-size: 1.8rem;
+		color: $LAPIS-LAZULI;
+		border-radius: 7px;
+		background-color: $WHITE;
+		display: none;
+		opacity: 0;
+		transition: opacity 250ms ease,transform 250ms ease;
+		z-index: 99;
+		&.visible {
+			display: block;
+			opacity: 1;
+			transform: scale(1) translate3d(0,0,0);
+		}
+		&:before {
+			content: "";
+			position: absolute;
+			top: -15px;
+			left: 25%;
+			// margin-left: -10px;
+			width: 0;
+			height: 0;
+			border-bottom: 20px solid $WHITE;
+			border-left: 15px solid transparent;
+			border-right: 15px solid transparent;
+		}
+		ul {
+			li {
+				display: block;
+				cursor: pointer;
+				margin-bottom: 20px;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.text-form {
+		position: relative;
+		width: 100%;
+		border-radius: 7px;
+		background-color: $WHITE;
+	}
+
+	input[type=text] {
+		width: 100%;
+		padding: 8px 10px;
+		font-size: 1.6rem;
+		outline: none;
+		border: 0px;
+		background: transparent;
+		box-sizing: border-box;
+	}
+
+	#modal-overlay {
+		z-index: 10;
+		display:none;
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:120%;
+		background-color:rgba(0,0,0,0.75);
+	}
+}
+/*--------------------------------------------------------
+	header
+---------------------------------------------------------*/
+#wrap {
+	height: 100%;
+	padding: 0 20px 20px;
+	box-sizing: border-box;
+	background-color: $SANDY-BROWN;
+
+	header {
+		position: relative;
+		width: 100%;
+		padding: 10px 0 10px 0;
+		.first-header {
+			.logo {
+				width: 250px;
+				margin-right: 30px;
+				text-align: center;
+				h1 {
+					font-size: 3.5rem;
+					font-weight: 500;
+				}
+			}
+			.header-menu {
+				position: absolute;
+				right: 0px;
+				padding-bottom: 10px;
+				border-bottom: 2px solid $WHITE;
+				box-sizing: border-box;
+				ul {
+					letter-spacing: -0.5em;
+					li {
+						display: inline-block;
+						letter-spacing: normal;
+						vertical-align: middle;
+						height: 32px;
+						margin-right: 20px;
+						&:last-child {
+							margin-right: 0;
+						}
+						&.li-tab {
+							margin-right: 10px;
+						}
+						&.more {
+							position: relative;
+							#more-menu {
+								position: absolute;
+								top: 40px;
+								ul {
+									li {
+										height: 100%;
+									}
+								}
+							}
+						}
+						.border {
+							display: block;
+							border-right: 1px solid $WHITE;
+							height: 32px;
+							margin: 0;
+						}
+						.tab-button {
+							display: block;
+							width: 120px;
+							padding: 10px 0 9px;
+							font-size: 1.5rem;
+							text-align: center;
+							letter-spacing: 0.2rem;
+							background-color: $LIGHT-RED-OCHRE;
+						}
+					}
+				}
+
+				#account-button {
+					display: none;
+					letter-spacing: -0.5em;
+					.account-icon {
+						display: inline-block;
+						letter-spacing: normal;
+						vertical-align: middle;
+						width: 30px;
+						height: 30px;
+						border-radius: 10px;
+						background-color: $MEDIUM-SEA-GREEN;
+					}
+				}
+			}
+		}
+		.second-header {
+			padding-top: 10px;
+			.option-menu {
+				text-align: right;
+				ul {
+					letter-spacing: -0.5em;
+					li {
+						display: inline-block;
+						letter-spacing: normal;
+						margin-right: 30px;
+						&:last-child {
+							margin-right: 0;
+						}
+						.text-form {
+							border: 2px solid rgba(0,0,0,0);
+							transition: border 250ms ease;
+							&:hover {
+								border: 2px solid $GRAY;
+							}
+							input[type=text] {
+								padding: 8px 40px 8px 10px;
+								&:focus {
+
+								}
+							}
+							i {
+								position: absolute;
+								top: 9px;
+								right: 13px;
+								font-size: 1.8rem;
+								color: $GRAY;
+								cursor: pointer;
+								transition: color 250ms ease;
+								&:hover {
+									color: $LAPIS-LAZULI;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#modal {
+		.modal-content {
+			display: none;
+			position:fixed;
+			width:50%;
+			margin:1.5em auto 0;
+			padding:10px 20px;
+			border-radius: 7px;
+			background: $LIGHT-RED-OCHRE;
+			z-index:11;
+			.close-button {
+				cursor: pointer;
+			}
+		}
+		#signup-content {
+			.err_msg {
+				display: none;
+				margin-bottom: 40px;
+				text-align: center;
+				& p {
+					color: #C8C163;
+					font-size: 1.4em;
+				}
+			}
+		}
+	}
+/*--------------------------------------------------------
+	main
+---------------------------------------------------------*/
+	main {
+		.side-area {
+			margin-right: 30px;
+			.side-menu {
+				width: 250px;
+				padding: 20px;
+				box-sizing: border-box;
+				text-align: left;
+				border-radius: 15px;
+				background-color: $LIGHT-RED-OCHRE;
+				box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+				position: relative;
+				h2 {
+					margin-bottom: 30px;
+					font-size: 3rem;
+					font-weight: 500;
+					text-align: center;
+				}
+				& > div {
+					margin-bottom: 30px;
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+				h3 {
+					margin-left: 10px;
+					margin-bottom: 10px;
+					font-size: 1.8rem;
+					font-weight: lighter;
+					letter-spacing: 0.3;
+				}
+				.name-form {
+
+				}
+				.category-form {
+					ul {
+						// text-align: center;
+						li {
+							display: list-item;
+							// float: left;
+							width: 60px;
+							height: 60px;
+							margin-right: 15px;
+							margin-bottom: 10px;
+							text-align: center;
+							border-radius: 7px;
+							cursor: pointer;
+							transition: filter 350ms ease;
+							&:hover {
+								filter: brightness(85%);
+							}
+							&:active {
+								filter: brightness(70%);
+							}
+							& span {
+								font-size: 1.5rem;
+								line-height: 4.3;
+								letter-spacing: 0.1rem;
+								text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+							}
+							&:last-child {
+								margin-right: 0;
+							}
+							&#html-button {
+								background-color: $ANDROID-GREEN;
+							}
+							&#css-button {
+								background-color: $UCLA-GOLD;
+							}
+							&#js-button {
+								background-color: $GREEN-SHEEN;
+							}
+							&#php-button {
+								background-color: $ROYAL-PURPLE;
+							}
+							&#xml-button {
+								background-color: $MEDIUM-SEA-GREEN;
+							}
+							&#sql-button {
+								background-color: $MAGENTA-PINK;
+							}
+						}
+					}
+				}
+				.list-form {
+					h3 {
+
+					}
+					hr {
+						margin: 10px auto;
+						font-size: 0;
+						border-top: 2px solid $WHITE;
+					}
+					ul {
+						margin: 0 10px;
+						li {
+							margin-bottom: 5px;
+							font-size: 1.5rem;
+							overflow: hidden;
+							cursor: pointer;
+							&:hover > label {
+								opacity: 1;
+							}
+							span {
+								float: left;
+							}
+							label {
+								float: right;
+								cursor: pointer;
+								opacity: 0;
+								transition: opacity 250ms ease;
+							}
+						}
+					}
+				}
+				.tag-form {
+					.text-form {
+						background: transparent;
+						border-radius: 0px;
+						border-bottom: 3px solid $WHITE;
+					}
+				}
+				.form-save {
+					position: absolute;
+					bottom: 20px;
+					.save-button {
+						width: 210px;
+						padding: 12px 0;
+						font-size: 1.5rem;
+						letter-spacing: 0.2rem;
+						background-color: $LAPIS-LAZULI;
+					}
+				}
+			}
+		}
+		.main-area {
+			width: 80%;
+			min-width: 800px;
+			.editor-disp {
+				border-radius: 15px;
+				box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+				.ace_gutter {
+					padding: {
+						top: 0px;
+						right: 0px;
+						bottom: 0px;
+						left: 10px;
+					}
+				}
+			}
+			.savedata-disp {
+				width: 100%;
+				.savedata-body {
+					width: 900px;
+					.data-box {
+						width: 120px;
+						margin: 10px 20px;
+						cursor: pointer;
+						transition: filter 350ms ease;
+						&:hover {
+							filter: brightness(85%);
+						}
+						&:active {
+							filter: brightness(70%);
+						}
+						.data-icon {
+							width: 120px;
+							height: 120px;
+							background-repeat: no-repeat;
+							background-size: contain;
+						}
+						&#html > .data-icon {background-image: url('../images/html.png');}
+						&#html > .box-info {border-left: 4px solid $ANDROID-GREEN;}
+						&#css > .data-icon {background-image: url('../images/css.png');	}
+						&#css > .box-info {border-left: 4px solid $UCLA-GOLD;}
+						&#javascript > .data-icon {background-image: url('../images/javascript.png');}
+						&#javascript > .box-info {border-left: 4px solid $GREEN-SHEEN;}
+						&#php > .data-icon {background-image: url('../images/php.png');}
+						&#php > .box-info {border-left: 4px solid $ROYAL-PURPLE;}
+						&#xml > .data-icon {background-image: url('../images/xml.png');}
+						&#xml > .box-info {border-left: 4px solid $MEDIUM-SEA-GREEN;}
+						&#sql  > .data-icon{background-image: url('../images/sql.png');}
+						&#sql > .box-info {border-left: 4px solid $MAGENTA-PINK;}
+						.box-info {
+							margin-top: 10px;
+							padding: 10px 0 10px 5px;
+							p {
+								margin-bottom: 10px;
+								font-size: 1.5rem;
+								text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+								&:last-child {
+									margin: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/*--------------------------------------------------------
+	footer
+---------------------------------------------------------*/

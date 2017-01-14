@@ -1,0 +1,62 @@
+@charset "utf-8";
+// ===================================================================
+// mixin.scss
+// ===================================================================
+// 変数の定義
+
+/*--------------------------------------------------------
+	各種設定
+---------------------------------------------------------*/
+
+
+
+
+/*--------------------------------------------------------
+	メディアクエリの設定
+---------------------------------------------------------*/
+// min-width
+$breakpoint-up: (
+	'sm': 'screen and (min-width: 400px)',
+	'md': 'screen and (min-width: 768px)',
+	'lg': 'screen and (min-width: 1000px)',
+	'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+// max-width
+$breakpoint-down: (
+	'sm': 'screen and (max-width: 399px)',
+	'md': 'screen and (max-width: 767px)',
+	'lg': 'screen and (max-width: 999px)',
+	'xl': 'screen and (max-width: 1199px)',
+) !default;
+
+// @mixinの定義
+// map-get()の第一引数に変数名、第二引数にマップ型のキーを渡すと、マップ型の値が返ります。
+// #{}はインターポーレーションと呼ばれるもので、通常はエラーになってしまう箇所でも出力できるようになります。
+// @mixinの引数$breakpointには初期値としてmdを設定しています。
+@mixin mq-up($breakpoint: md) {
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
+}
+
+@mixin mq-down($breakpoint: md) {
+	@media #{map-get($breakpoint-down, $breakpoint)} {
+		@content;
+	}
+}
+
+// レスポンシブに対応したクラスを生成する@mixin
+// メディアクエリの条件#{$value}とクラス名の接尾辞#{$suffix}として書き出します。
+@mixin responsive($class, $bp: $breakpoint-up) {
+  #{$class} {
+    @content;
+  }
+  @each $suffix, $value in $bp {
+    @media #{$value} {
+      #{$class}-#{$suffix} {
+        @content;
+      }
+    }
+  }
+}
