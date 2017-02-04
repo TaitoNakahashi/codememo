@@ -1,0 +1,107 @@
+@charset "utf-8";
+// ===================================================================
+// mixin.scss
+// ===================================================================
+
+// @mixinの定義
+
+
+// clearfixの設定
+@mixin clearfix {
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+}
+
+// プロパティにプレフィックスを付与
+@mixin property-prefix($name, $value) {
+	@each $prefix in $set-prefix {
+		#{$prefix}#{$name}: $value;
+	}
+}
+
+// 値にプレフィックスを付与
+@mixin value-Prefix($name, $value) {
+	@each $prefix in $set-prefix {
+		#{$name}: #{$prefix}$value;
+	}
+}
+
+
+// font-sizeの設定
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}
+
+// border-radiusの設定
+@mixin border-radius($radius:.25em) {
+	@each $prefix in $set-prefix {
+		#{$prefix}border-radius: $radius;
+	}
+}
+
+
+
+// transitionの設定　プレフィックスを付与
+
+
+
+@mixin center($xy:xy) {
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    // @include transform(translateX(-50%) translateY(-50%));
+  }
+  @else if $xy == x {
+    left: 50%;
+    right: auto;
+    // @include transform(translateX(-50%));
+  }
+  @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    // @include transform(translateY(-50%));
+  }
+}
+
+
+
+// map-get()の第一引数に変数名、第二引数にマップ型のキーを渡すと、マップ型の値が返ります。
+// #{}はインターポーレーションと呼ばれるもので、通常はエラーになってしまう箇所でも出力できるようになります。
+// @mixinの引数$breakpointには初期値としてmdを設定しています。
+@mixin mq-up($breakpoint: md) {
+	@media #{map-get($breakpoint-up, $breakpoint)} {
+		@content;
+	}
+}
+
+@mixin mq-down($breakpoint: md) {
+	@media #{map-get($breakpoint-down, $breakpoint)} {
+		@content;
+	}
+}
+
+// レスポンシブに対応したクラスを生成する@mixin
+// メディアクエリの条件#{$value}とクラス名の接尾辞#{$suffix}として書き出します。
+@mixin responsive($class, $bp: $breakpoint-up) {
+	#{$class} {
+		@content;
+	}
+	@each $suffix, $value in $bp {
+		@media #{$value} {
+			#{$class}-#{$suffix} {
+				@content;
+			}
+		}
+	}
+}
