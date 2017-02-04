@@ -4,7 +4,11 @@
 	//フォーム部分とかかわりのないphp変数は関連付けしない
 	define( 'EMAIL', 'email');
 	define( 'PASSWORD', 'password');
+<<<<<<< HEAD
 	define( 'USERNAME', 'username');
+=======
+	define( 'NAME', 'name');
+>>>>>>> origin/master
 
 	define( 'LOGIN' , 'login');
 	define( 'USER_ID', 'user_id');
