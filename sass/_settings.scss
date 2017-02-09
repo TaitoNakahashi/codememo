@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @charset "utf-8";
 // ===================================================================
 // 設定
@@ -67,47 +66,3 @@ $breakpoint-down: (
 	'lg': 'screen and (max-width: 999px)',
 	'xl': 'screen and (max-width: 1199px)',
 ) !default;
-=======
-@charset "utf-8";
-// ===================================================================
-// 設定
-// ===================================================================
-
-
-// HTML5の場合は値を「false」から「true」にする
-$use-html5: true;
-
-// 汎用クラスを使用するか
-$use-extend-object: true;
-
-// 画像のパス
-$img-path: "../images/";
-
-// ベースフォント
-$base-font: "メイリオ", "Meiryo", verdana, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif, "Gotham Rounded SSm A","Gotham Rounded SSm B";
-$base-font-ie: "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
-
-// メインカラー（ベースカラー）
-$SANDY-BROWN: #f4a261;
-
-// サブカラー
-$LIGHT-RED-OCHRE: #E76F51;
-
-// アクセントカラー
-$LAPIS-LAZULI: #247BA0;
-$ANDROID-GREEN: #9BC53D;
-$UCLA-GOLD: #FFAE00;
-$GREEN-SHEEN: #70C1B3;
-$ROYAL-PURPLE: #774DA7;
-$MEDIUM-SEA-GREEN: #44A371;
-$MAGENTA-PINK: #cf3593;
-
-// ベーステキストカラー
-$WHITE: #ffffff;
-
-// ホバーカラー
-$GRAY: #9facbd;
-
-// 付与するベンダープレフィックス
-$set-prefix: -webkit-, -moz-, -ms-, -o-, '';
->>>>>>> origin/master
