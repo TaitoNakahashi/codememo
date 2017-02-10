@@ -13,20 +13,20 @@
 // ===================================================================
 
 *, *:after, *:before {
-	@include property-prefix(box-sizing, border-box);
+	@include box;
 }
 
 html,body {
 	height: 100%;
 	color: $WHITE;
 	font-family: $base_font;
-	font-size: 10px;
+	@include font-size(10);
+	background-color: $SANDY-BROWN;
 }
 
 #wrap {
 	height: 100%;
 	padding: 0 20px 20px;
-	background-color: $SANDY-BROWN;
 }
 
 span {
@@ -74,15 +74,14 @@ span {
 	cursor: pointer;
 	color: $WHITE;
 	font-family: $button-font;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	@include property-prefix(text-shadow, 0 1px 1px rgba(0, 0, 0, .3));
 	// -webkit-appearance: none;
 	// -webkit-font-smoothing: antialiased;
 	outline: none;
 	border: none;
-	border-radius: 7px;
+	@include border-radius(7);
 	background-color: $GRAY;
-	box-sizing: border-box;
-	transition: filter 350ms ease;
+	@include property-prefix(transition, filter 350ms ease);
 
 	&:hover {
 		filter: brightness(85%);
@@ -95,31 +94,31 @@ span {
 
 .tool-button {
 	padding: 14px 13px;
-	font-size: 1.6em;
+	@include font-size(11);
 	letter-spacing: 0.1rem;
-	border-radius: 5px;
+	@include border-radius(5);
 	background-color: rgba(100,100,100,0.65);
 
 	&.f-t-button {
-		border-radius: 5px 0px 0px 5px;
+		@include property-prefix(border-radius, 5px 0px 0px 5px);
 	}
 
 	&.l-t-button {
-		border-radius: 0px 5px 5px 0px;
+		@include property-prefix(border-radius, 0px 5px 5px 0px);
 	}
 }
 
-#filter-reset {
-	display: block;
-	background-color: $LAPIS-LAZULI;
-}
+// #filter-reset {
+// 	display: block;
+// 	background-color: $LAPIS-LAZULI;
+// }
 
 .text-button {
 	position: relative;
 	cursor: pointer;
 	line-height: 2;
 	letter-spacing: 0.1rem;
-	font-size: 1.8rem;
+	@include font-size(13);
 	transition: color 250ms ease;
 	&:hover {
 		color: $GRAY;
@@ -135,7 +134,7 @@ span {
 		position: absolute;
 		top: 10px;
 		margin: 0 5px;
-		font-size: 1.4rem;
+		@include font-size(10);
 	}
 }
 
@@ -143,18 +142,28 @@ span {
 	position: relative;
 	width: 100%;
 	border: 2px solid rgba(0,0,0,0);
-	@include border-radius(7px);
+	@include border-radius(7);
 	background-color: $WHITE;
+
+	input {
+		width: 100%;
+		@include font-size(11);
+		outline: none;
+		border: 0px;
+		background: transparent;
+
+		&.has-padding {
+			padding: 12px 20px 12px 50px;
+		}
+
+		&[type=password] {
+			/* space left for the HIDE button */
+			padding-right: 65px;
+		}
+	}
 }
 
-input {
-	width: 100%;
-	font-size: 1.6rem;
-	outline: none;
-	border: 0px;
-	background: transparent;
-	box-sizing: border-box;
-}
+
 
 .border-white {
 	display: block;
@@ -185,6 +194,10 @@ input {
 	background-color: $GREEN-SHEEN;
 }
 
+.has-error {
+	border: 2px solid $MAGENTA-PINK;
+}
+
 /*--------------------------------------------------------
 	header
 ---------------------------------------------------------*/
@@ -205,7 +218,7 @@ header {
 		text-align: center;
 
 		h1 {
-			font-size: 3.5rem;
+			@include font-size(30);
 			font-weight: 500;
 		}
 	}
@@ -231,11 +244,10 @@ header {
 				width: 120px;
 				margin-top: 1px;
 				padding: 13px 0;
-				font-size: 1.6rem;
+				@include font-size(11);
 				text-align: center;
-				letter-spacing: 0.2rem;
+				letter-spacing: 0.1rem;
 				border: 1px solid $LIGHT-RED-OCHRE;
-				box-sizing: border-box;
 				background-color: $LIGHT-RED-OCHRE;
 			}
 
@@ -255,7 +267,7 @@ header {
 			vertical-align: middle;
 			width: 30px;
 			height: 30px;
-			border-radius: 10px;
+			@include border-radius(10);
 			background-color: $MEDIUM-SEA-GREEN;
 		}
 	}
@@ -299,7 +311,7 @@ header {
 					position: absolute;
 					top: 9px;
 					right: 13px;
-					font-size: 1.8rem;
+					@include font-size(13);
 					color: $GRAY;
 					cursor: pointer;
 					transition: color 250ms ease;
@@ -327,10 +339,10 @@ header {
 	display: none;
 	padding: 20px 20px;
 	color: $LAPIS-LAZULI;
-	font-size: 1.8rem;
-	@include border-radius(7px);
+	@include font-size(12);
+	@include border-radius(7);
 	background-color: $WHITE;
-	box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+	@include property-prefix(box-shadow, 0px 0px 10px rgba(0,0,0,0.3));
 	transition: opacity .18s ease,transform .18s ease;
 	transform-origin: 50% 0%;
 	opacity: 0;
@@ -358,7 +370,7 @@ header {
 		cursor: pointer;
 		margin-bottom: 20px;
 		margin-right: 0px;
-		transition: color 200ms ease;
+		@include property-prefix(transition, color 200ms ease);
 
 		&:last-child {
 			// margin-bottom: 0;
@@ -373,7 +385,7 @@ header {
 		}
 	}
 
-	&#more-menu {
+	&#more-menu-1 {
 		top: 65px;
 		right: 180px;
 
@@ -381,6 +393,16 @@ header {
 			left: 35%;
 		}
 	}
+
+	&#more-menu-2 {
+		top: 65px;
+		right: 180px;
+
+		&:before {
+			left: 35%;
+		}
+	}
+
 	&#mode-menu {
 
 		top: 145px;
@@ -434,7 +456,7 @@ header {
 	max-width: 400px;
 	margin: 4em auto;
 	text-align: center;
-	@include border-radius(15px);
+	@include border-radius(15);
 	background: $LIGHT-RED-OCHRE;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 	@include property-prefix(transform, translateY(-40px));
@@ -448,10 +470,11 @@ header {
 	transition-duration: 0.3s;
 
 	h2 {
-		padding: 30px 10px;
-		@include font-size(30px);
+		padding: 1em 1em;
+		@include font-size(20);
 		letter-spacing: 0.1em;
 	}
+
 }
 .popup-container
 .popup-container .popup-buttons:after {
@@ -475,14 +498,14 @@ header {
 }
 .popup-container .popup-buttons li:first-child a {
   background: #fc7169;
-  border-radius: 0 0 0 .25em;
+  @include border-radius(0 0 0 .25em);
 }
 .no-touch .popup-container .popup-buttons li:first-child a:hover {
   background-color: #fc8982;
 }
 .popup-container .popup-buttons li:last-child a {
-  background: #b6bece;
-  border-radius: 0 0 .25em 0;
+	background: #b6bece;
+	@include border-radius(0 0 .25em 0);
 }
 .no-touch .popup-container .popup-buttons li:last-child a:hover {
   background-color: #c5ccd8;
@@ -574,30 +597,10 @@ header {
 		}
 	}
 
-	input {
-
-		&.has-padding {
-			padding: 12px 20px 12px 50px;
-		}
-
-		&.has-error {
-			border: 1px solid $MAGENTA-PINK;
-		}
-
-		&[type=password] {
-			/* space left for the HIDE button */
-			padding-right: 65px;
-		}
-
-	}
-
-	.full-width {
-		width: 100%;
-	}
-
 	.submit-button {
+		width: 100%;
 		padding: 16px 0;
-		font-size: 1.5rem;
+		@include font-size(11);
 		letter-spacing: 0.2rem;
 		border: 1px solid $LAPIS-LAZULI;
 		background-color: $LAPIS-LAZULI;
@@ -617,8 +620,8 @@ header {
 		padding: .8em;
 		z-index: 2;
 		color: #FFF;
-		@include font-size(13px);
-		@include border-radius;
+		@include font-size(13);
+		@include border-radius(7);
 
 		/* prevent click and touch events */
 		pointer-events: none;
@@ -670,7 +673,7 @@ header {
 
 .form-message {
 	padding: 1.4em 1.4em 0;
-	@include font-size(14px);
+	@include font-size(12);
 	line-height: 1.4;
 	text-align: center;
 
@@ -685,7 +688,7 @@ header {
 	left: 0;
 	bottom: -30px;
 	text-align: center;
-	@include font-size(14px);
+	@include font-size(12);
 
 	a {
 		color: #FFF;
@@ -709,13 +712,13 @@ main {
 		width: 250px;
 		padding: 20px;
 		text-align: left;
-		@include border-radius(15px);
+		@include border-radius(15);
 		background-color: $LIGHT-RED-OCHRE;
-		box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+		@include property-prefix(box-shadow, 0px 5px 10px rgba(0,0,0,0.3));
 
 		h2 {
 			margin-bottom: 30px;
-			font-size: 3rem;
+			@include font-size(19);
 			font-weight: 500;
 			text-align: center;
 		}
@@ -731,7 +734,7 @@ main {
 		h3 {
 			margin-left: 10px;
 			margin-bottom: 13px;
-			font-size: 1.8rem;
+			@include font-size(13);
 			font-weight: 500;
 			letter-spacing: 0.3;
 		}
@@ -761,14 +764,14 @@ main {
 				height: 60px;
 				margin-right: 15px;
 				margin-bottom: 10px;
-				font-size: 1.5rem;
+				@include font-size(9);
 				letter-spacing: 0.1rem;
 				line-height: 4.3;
 				text-align: center;
-				text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-				@include border-radius(7px);
+				@include property-prefix('text-shadow', 0 1px 1px rgba(0, 0, 0, 0.5));
+				@include border-radius(7);
 				cursor: pointer;
-				transition: filter 350ms ease;
+				@include property-prefix(transition, filter 350ms ease);
 
 				&:hover {
 					filter: brightness(85%);
@@ -790,46 +793,46 @@ main {
 				&#sql-button { background-color: $MAGENTA-PINK; }
 			}
 		}
-		.list-form {
-
-			hr {
-				margin: 10px auto;
-				font-size: 0;
-				border-top: 2px solid $WHITE;
-			}
-
-			ul {
-				margin: 0 10px;
-
-				li {
-					margin-bottom: 5px;
-					font-size: 1.5rem;
-					overflow: hidden;
-					cursor: pointer;
-
-					&:hover > label {
-						opacity: 1;
-					}
-
-					span {
-						float: left;
-					}
-
-					label {
-						float: right;
-						cursor: pointer;
-						opacity: 0;
-						transition: opacity 250ms ease;
-					}
-				}
-			}
-		}
+		// .list-form {
+		//
+		// 	hr {
+		// 		margin: 10px auto;
+		// 		font-size: 0;
+		// 		border-top: 2px solid $WHITE;
+		// 	}
+		//
+		// 	ul {
+		// 		margin: 0 10px;
+		//
+		// 		li {
+		// 			margin-bottom: 5px;
+		// 			font-size: 1.5rem;
+		// 			overflow: hidden;
+		// 			cursor: pointer;
+		//
+		// 			&:hover > label {
+		// 				opacity: 1;
+		// 			}
+		//
+		// 			span {
+		// 				float: left;
+		// 			}
+		//
+		// 			label {
+		// 				float: right;
+		// 				cursor: pointer;
+		// 				opacity: 0;
+		// 				transition: opacity 250ms ease;
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		.tag-form {
 
 			.text-form {
 				background: transparent;
-				border-radius: 0px;
+				border-border-radius: 0px;
 				border-bottom: 3px solid $WHITE;
 
 				input[type=text] {
@@ -845,7 +848,7 @@ main {
 			.save-button {
 				width: 210px;
 				padding: 11px 0;
-				font-size: 1.5rem;
+				@include font-size(9);
 				letter-spacing: 0.2rem;
 				border: 1px solid $LAPIS-LAZULI;
 				background-color: $LAPIS-LAZULI;
@@ -860,17 +863,30 @@ main {
 				}
 			}
 		}
+
+		@include mq-down(lg) {
+			height: 620px;
+		}
+		@include mq-up(lg) {
+			height: 640px;
+		};
 	}
 }
 
 .main-area {
 	width: 100%;
-	min-width: 800px;
 }
 
 .editor-disp {
-	border-radius: 15px;
-	box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+	@include border-radius(15);
+	@include property-prefix(box-shadow, 0px 7px 10px rgba(0,0,0,0.5));
+
+	@include mq-down(lg) {
+		height: 620px;
+	}
+	@include mq-up(lg) {
+		height: 640px;
+	};
 
 	.ace_gutter {
 		padding: {
@@ -884,11 +900,16 @@ main {
 
 .savedata-disp {
 	width: 100%;
-	height: 515px;
 	padding: 20px 0 10px;
-	border-radius: 15px;
+	@include border-radius(15);
 	background-color: rgba(30,30,30,0.20);
-	box-sizing: border-box;
+
+	@include mq-down(lg) {
+		height: 620px;
+	}
+	@include mq-up(lg) {
+		height: 640px;
+	};
 
 	ul {
 
@@ -896,9 +917,9 @@ main {
 			position: relative;
 			display: block;
 			width: 120px;
-			margin: 10px 30px;
+			margin: 20px 30px;
 			cursor: pointer;
-			transition: filter 350ms ease;
+			@include property-prefix(transition, filter 350ms ease);
 
 			&:hover , &:hover > .delete-button {
 				opacity: 1;
@@ -914,10 +935,10 @@ main {
 				top: -12px;
 				left: -12px;
 				font-size: 2rem;
-				text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+				@include property-prefix(text-shadow, 0 1px 1px rgba(0, 0, 0, .3));
 				opacity: 0;
 				cursor: pointer;
-				transition: opacity 250ms ease;
+				@include property-prefix(transition, opacity 250ms ease);
 			}
 
 			.data-icon {
@@ -952,15 +973,15 @@ main {
 					}
 
 					&.data-title {
-						font-size: 1.6rem;
+						@include font-size(12);
 					}
 
 					&.data-date {
-						font-size: 1.2rem;
+						@include font-size(10);
 					}
 
 					&.tag-name {
-						font-size: 1.2rem;
+						@include font-size(10);
 					}
 				}
 			}

@@ -17,15 +17,32 @@
 	$new_save = isset($data['new_save']) ? htmlspecialchars($data['new_save']) : '';
 	$memo_id = isset($data['memo_id']) ? htmlspecialchars($data['memo_id']) : '';
 	$memo_name = isset($data['memo_name']) ? htmlspecialchars($data['memo_name']) : '';
+	$memo_name = trim($memo_name);
 	$mode_name = isset($data['mode_name']) ? htmlspecialchars($data['mode_name']) : '';
 	$memo_data = isset($data['memo_data']) ? htmlspecialchars($data['memo_data']) : '';
+	$memo_data = ltrim($memo_data);
+
 	// タイムゾーン設定を東京に変更
 	date_default_timezone_set('Asia/Tokyo');
 	// 保存した日付を取得
 	$save_date = date('YmdHis');
 	$tag_name = isset($data['tag_name']) ? htmlspecialchars($data['tag_name']) : '';
+
+	if(empty($memo_name) || empty($memo_data)) {
+		$error = '空白の必須項目があります！　入力し直してください！';
+		print($error);
+		exit();
+	}
+
 	// user_idはログインしたユーザ名を取得
-	$user_id = 'taito@taito.com';
+	// if(!isset($_SESSION[USER_ID]) || empty($_SESSION[USER_ID])) {
+	// 	$error = 'ログインされていません！ ログインか登録をしましょう！';
+	// 	print($error);
+	// 	exit();
+	// } else {
+	// 	$user_id = htmlspecialchars($_SESSION[USER_ID]);
+	// 	$user_id = trim($user_id);
+	// }
 
 	//データベース接続用php呼出し
 	require 'mysql_connect.php';
@@ -169,9 +186,7 @@
 			exit();
 		}
 	} else {
-		$error = 'タグの保存に失敗しました。';
-		print($error);
-		exit();
+		// 保存しない場合はなにもしない
 	}
 
 	// errorがなければ保存が完了の変数を返す

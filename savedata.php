@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-<title>CodeMemo</title>
+<title>CoMeApp/Savedata</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/font-awesome.css">
 <link rel="stylesheet" href="css/animsition.min.css">
@@ -43,7 +43,7 @@
 			<div class="first-header flex-container">　<!-- first-header -->
 
 				<div class="logo">
-					<h1>CodeMemo</h1>
+					<h1>CoMeApp</h1>
 				</div>
 
 				<ul class="groval-menu-ul flex-container">

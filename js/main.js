@@ -99,6 +99,7 @@ $(function() {
 	var signupButton = $('#signup-button');
 	var errorMsg = $('.error-message');
 	var email = $('input[name="email"]');
+	var userid = $('input[name="user-id"]')
 	var password = $('input[name="password"]');
 	var username = $('input[name="username"]');
 	var error = 0;
@@ -124,17 +125,18 @@ $(function() {
 			if($(this).val() === '') {
 				$(this).toggleClass('has-error').next('span').toggleClass('is-visible');
 			} else {
-				(this).removeClass('has-error').next('span').removeClass('is-visible');
+				$(this).removeClass('has-error').next('span').removeClass('is-visible');
 			}
 		});
 		var data = {
-			'email': email.val(),
-			'password': password.val()
+			'userid': login.find(userid).val(),
+			'password': login.find(password).val()
 		};
+		console.log(data);
 		$.ajax({
 			// ロリポップサーバのphpファイルのパスを指定
 			// 現在は仮でローカルサーバ
-			url: 'php/login_connect.php',
+			url: 'php/login.php',
 			type: 'post',
 			data: JSON.stringify(data),
 		}).done(function( response, textStatus, jqXHR) {
@@ -151,13 +153,13 @@ $(function() {
 			if($(this).val() === '') {
 				$(this).toggleClass('has-error').next('span').toggleClass('is-visible');
 			} else {
-				(this).removeClass('has-error').next('span').removeClass('is-visible');
+				$(this).removeClass('has-error').next('span').removeClass('is-visible');
 			}
 		});
 		var data = {
-			'username': username.val(),
-			'email': email.val(),
-			'password': password.val()
+			'username': signup.find(username).val(),
+			'email': signup.find(email).val(),
+			'password': signup.find(password).val()
 		};
 		$.ajax({
 			// ロリポップサーバのphpファイルのパスを指定
@@ -173,6 +175,12 @@ $(function() {
 			alert('データの送信にエラーが発生しました。'+jqXHR.status+textStatus+errorThrown);
 		});
 	}
+
+	$(document).on('click', '.popup-logout-trigger', function(event) {
+		event.preventDefault();
+		popup.addClass('is-visible');
+
+	})
 
 	// save-dataの削除確認ポップアップ
 	$('.popup-delete-trigger').on('click', function(event) {
@@ -294,14 +302,20 @@ $(function() {
 			var size = $('#font-check').html();
 			size = size.replace(/px/g , "");
 			if($(this).attr('id').match('font-plus')) {
-				size++;
-				$('#font-check').val(size);
-				$('#font-check').html(size+'px');
+				if(size >= '24') {
+					size = '24';
+				} else {
+					size++;
+				}
 			} else if($(this).attr('id').match('font-minus')) {
-				size--;
-				$('#font-check').val(size);
-				$('#font-check').html(size+'px');
+				if(size <= '12') {
+					size = '12';
+				} else {
+					size--;
+				}
 			}
+			$('#font-check').val(size);
+			$('#font-check').html(size+'px');
 			editor.setFontSize(size);
 		});
 
@@ -348,8 +362,17 @@ $(function() {
 		// 新規保存
 		save.on('click',function() {
 			// 入力バリデーション
+			if(memoName.val() === '') {
+				$('.memo-name').toggleClass('has-error').next('span').toggleClass('is-visible');
+			} else {
+				$('.memo-name').removeClass('has-error').next('span').removeClass('is-visible');
+			}
 
-
+			if(editor.getValue() === '') {
+				$('.editor-disp').toggleClass('has-error').next('span').toggleClass('is-visible');
+			} else {
+				$('.editor-disp').removeClass('has-error').next('span').removeClass('is-visible');
+			}
 
 			// save-buttonを押されたらsave-buttonを変更状態にする
 			// save-buttonがtwobuttonの状態になっているかどうか

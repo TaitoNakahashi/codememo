@@ -6,7 +6,6 @@
 	define( 'PASSWORD', 'password');
 	define( 'USERNAME', 'username');
 
-	define( 'USER_ID', 'user_id');
-	define( 'USER_NAME', 'user_name');
+	define( 'USER_ID', 'userid');
 
 ?>

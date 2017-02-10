@@ -30,16 +30,26 @@
 }
 
 
+@mixin box($type: border-box) {
+	@include box-sizing(#{$type});
+}
+
+@mixin box-sizing($type) {
+	@each $prefix in $set-prefix {
+		#{$prefix}box-sizing: #{$type};
+	}
+}
+
 // font-sizeの設定
-@mixin font-size($size) {
-	font-size: $size;
-	font-size: calculateRem($size);
+@mixin font-size($size: 14) {
+	font-size: $size + px;
+	font-size: ($size / 10)  + rem;
 }
 
 // border-radiusの設定
-@mixin border-radius($radius:.25em) {
+@mixin border-radius($size:.25em) {
 	@each $prefix in $set-prefix {
-		#{$prefix}border-radius: $radius;
+		#{$prefix}border-radius: ($size + px);
 	}
 }
 

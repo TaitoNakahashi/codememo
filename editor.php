@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-<title>CodeMemo</title>
+<title>CoMeApp/Editor</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/font-awesome.css">
 <link rel="stylesheet" href="css/animsition.min.css">
@@ -41,7 +41,7 @@
 			<div class="first-header flex-container">　<!-- first-header -->
 
 				<div class="logo">
-					<h1>CodeMemo</h1>
+					<h1>CoMeApp</h1>
 				</div>
 
 				<ul class="groval-menu-ul flex-container">
@@ -142,10 +142,9 @@
 
 			<div class="balloon-menu" id="account-menu">
 				<ul>
-					<li data-target="support"><span>Support</span></li>
+					<li data-target="account"><span>Account</span></li>
 					<li data-target="about"><span>About</span></li>
-					<li data-target="tutorial"><span>Tutorial</span></li>
-					<li data-target="contact"><span>Contact</span></li>
+					<li class="popup-logout-trigger" data-target="logout"><span>Logout</span></li>
 				</ul>
 			</div>
 
@@ -169,7 +168,7 @@
 					<form class="popup-form" id="login" name="login" action="" method="post">
 						<div class="text-form">
 							<label class="image-replace email" for="login-email">E-mail</label>
-							<input type="email" class="has-padding" name="email" placeholder="E-mail" value="">
+							<input type="email" class="has-padding" name="user-id" placeholder="E-mail" value="">
 							<span class="error-message">Error message here!</span>
 						</div>
 						<div class="text-form">
@@ -229,7 +228,7 @@
 					<input type="hidden" id="memo-id" name="memo-id" value="">
 					<div class="name-form">
 						<h3>Name</h3>
-						<div class="text-form">
+						<div class="text-form memo-name">
 							<input type="text" id="memo-name" name="memo-name" />
 						</div>
 					</div>
