@@ -44,6 +44,8 @@
 	// 	$user_id = trim($user_id);
 	// }
 
+	$user_id = 'ago@ago.jp';
+
 	//データベース接続用php呼出し
 	require 'mysql_connect.php';
 
@@ -168,12 +170,15 @@
 			$dbtag_name = isset($rows['tag_name']) ? $rows['tag_name'] : '';
 		}
 		unset($rows);
+		if(isset($dbtag_id) && !empty($dbtag_id)) {
+			tagmap($dbtag_id,$memo_id);
+		}
 	} else {
 		// 空白の場合はなにもしない
 	}
 
 	// t_tagsとt_memoの関連付け　t_tagmapにinsert
-	if(isset($dbtag_id) && !empty($dbtag_id)) {
+	function tagmap($dbtag_id,$memo_id) {
 		$sql = 'INSERT INTO t_tagmap (tag_id,memo_id) VALUES (?,?)';
 		$stmt = $pdo->prepare($sql);
 		$stmt->bindValue(1, $dbtag_id, PDO::PARAM_STR);
@@ -185,8 +190,6 @@
 			print($error);
 			exit();
 		}
-	} else {
-		// 保存しない場合はなにもしない
 	}
 
 	// errorがなければ保存が完了の変数を返す

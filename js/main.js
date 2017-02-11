@@ -302,8 +302,8 @@ $(function() {
 			var size = $('#font-check').html();
 			size = size.replace(/px/g , "");
 			if($(this).attr('id').match('font-plus')) {
-				if(size >= '24') {
-					size = '24';
+				if(size >= '20') {
+					size = '20';
 				} else {
 					size++;
 				}
@@ -488,7 +488,7 @@ $(function() {
 			window.alert('エラーが発生しました。--> データ呼出し');
 		}
 		// localhost用　url
-		var localUrl ='http://localhost:8888/codememoA/editor.php';
+		var localUrl ='http://localhost:80/codememoA/editor.php';
 		// lolipop用 url
 		var loliUrl = 'http://';
 		window.location.href = localUrl;

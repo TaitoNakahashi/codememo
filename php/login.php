@@ -40,13 +40,14 @@
 		print($error);
 		exit();
 	}
-	if(empty($rows)) {
-		// データが存在していない場合
-		$error = 'ユーザIDあるいはパスワードに誤りがあります。';
-		print($error);
-		exit();
-	}
+
 	foreach ($stmt as $rows) {
+		if(empty($rows)) {
+			// データが存在していない場合
+			$error = 'ユーザIDあるいはパスワードに誤りがあります。';
+			print($error);
+			exit();
+		}
 		$dbuser_id = isset($rows['user_id']) ? $rows['user_id'] : '';
 		$dbuser_name = isset($rows['user_name']) ? $rows['user_name'] : '';
 		$dbhashed_pwd = isset($rows['user_pass']) ? $rows['user_pass'] : '';

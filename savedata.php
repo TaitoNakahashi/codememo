@@ -95,7 +95,7 @@
 						<li class="filter-keyword-li">
 							<fieldset>
 								<div class="text-form">
-									<input type="text" placeholder="Enter Name" name="filter-keyword" id="filter--text" data-filiter=""><i class="fa fa-search" aria-hidden="true"></i>
+									<input type="text" placeholder="キーワードは現在使えません！" name="filter-keyword" id="filter--text" data-filiter=""><i class="fa fa-search" aria-hidden="true"></i>
 								</div>
 							</fieldset>
 						</li>
@@ -166,8 +166,8 @@
 		<section id="section-popup"><!-- ポップアップメニュー本体 -->
 
 			<div class="popup-menu" role="alert"><!-- cd-popup -->
-				<div class="popup-container"> <!-- cd-popup-container -->
-					<p>このメモデータを消去しますがよろしいですか？</p>
+				<div class="popup-container" id="delete-popup"> <!-- cd-popup-container -->
+					<p class="check-text">このメモデータを消去しますがよろしいですか？</p>
 					<ul class="popup-buttons">
 						<li><a href="#1">Yes</a></li>
 						<li><a href="#2">No</a></li>

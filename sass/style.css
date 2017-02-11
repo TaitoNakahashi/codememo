@@ -475,11 +475,19 @@ header {
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   transition-duration: 0.3s; }
+  .popup-container#delete-popup {
+    -webkit-border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    -ms-border-radius: 15px 15px 0px 0px;
+    -o-border-radius: 15px 15px 0px 0px;
+    border-radius: 15px 15px 0px 0px; }
   .popup-container h2 {
     padding: 1em 1em;
     font-size: 20px;
     font-size: 2rem;
     letter-spacing: 0.1em; }
+  .popup-container .check-text {
+    padding: 3em 1em; }
 
 .popup-container
 .popup-container .popup-buttons:after {

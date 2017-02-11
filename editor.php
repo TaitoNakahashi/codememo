@@ -91,13 +91,12 @@
 			<div class="second-header"><!-- second-header -->
 
 					<ul class="tool-menu-ul flex-container">
-						<li class="cell-container">
-							<li>
+						<!-- <li class="cell-container">
 								<div id="theme-change" class="button tool-button" data-target="theme-change">
 									<i class="fa fa-file-text-o" aria-hidden="true"></i>
 									Theme
 								</div>
-							</li>
+						</li> -->
 						<li class="cell-container">
 							<div id="font-plus" class="size-change cell-item button tool-button f-t-button" data-target="plus">
 								<i class="fa fa-search-plus" aria-hidden="true"></i>
@@ -241,7 +240,7 @@
 					<div class="tag-form">
 						<h3>Tag</h3>
 						<div class="text-form">
-							<input type="text" id="memo-tag" name="memo-tag" />
+							<input type="text" id="memo-tag" name="memo-tag" placeholder="現在壊れてます！" />
 						</div>
 						<div id="tags-disp">
 

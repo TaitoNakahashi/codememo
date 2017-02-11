@@ -469,11 +469,20 @@ header {
 	-moz-transition-duration: 0.3s;
 	transition-duration: 0.3s;
 
+	&#delete-popup {
+		@include property-prefix(border-radius,15px 15px 0px 0px);
+	}
+
 	h2 {
 		padding: 1em 1em;
 		@include font-size(20);
 		letter-spacing: 0.1em;
 	}
+
+	.check-text {
+		padding: 3em 1em;
+	}
+
 
 }
 .popup-container

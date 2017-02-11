@@ -17,7 +17,7 @@ header('Content-Type:text/html; charset=UTF-8');
 	// } else {
 		// クエリの実行
 		// $user_id = $_SESSION[USER_ID];
-		$user_id = 'taito@taito.com';
+		$user_id = 'ago@ago.jp';
 
 		// t_tags取得　タグフィルターの生成
 		$sql = 'SELECT * FROM t_tags WHERE user_id = ? GROUP BY tag_id ORDER BY tag_name ASC';
