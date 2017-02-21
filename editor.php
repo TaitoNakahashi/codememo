@@ -240,7 +240,7 @@
 					<div class="tag-form">
 						<h3>Tag</h3>
 						<div class="text-form">
-							<input type="text" id="memo-tag" name="memo-tag" placeholder="現在壊れてます！" />
+							<input type="text" id="memo-tag" name="memo-tag" placeholder="" />
 						</div>
 						<div id="tags-disp">
 
