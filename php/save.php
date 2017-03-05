@@ -21,7 +21,6 @@
 	$mode_name = isset($data['mode_name']) ? htmlspecialchars($data['mode_name']) : '';
 	$memo_data = isset($data['memo_data']) ? htmlspecialchars($data['memo_data']) : '';
 	$memo_data = ltrim($memo_data);
-
 	// タイムゾーン設定を東京に変更
 	date_default_timezone_set('Asia/Tokyo');
 	// 保存した日付を取得
@@ -133,6 +132,9 @@
 		print($error);
 		exit();
 	}
+	// SQLの結果が帰ってこなかった場合の初期値
+	$dbtag_id  = '';
+	$dbtag_name = '';
 	foreach ($stmt as $rows) {
 		$dbtag_id = isset($rows['tag_id']) ? $rows['tag_id'] : '';
 		$dbtag_name = isset($rows['tag_name']) ? $rows['tag_name'] : '';
@@ -142,6 +144,7 @@
 	if($dbtag_name === $tag_name) {
 		$tag_message = '入力されたタグは登録済みでした';
 	} else if(isset($tag_name) && !empty($tag_name)) {
+		// 存在していない場合は登録
 		$sql = 'INSERT INTO t_tags (tag_name,user_id) VALUES (?,?)';
 		$stmt = $pdo->prepare($sql);
 		$stmt->bindValue(1, $tag_name, PDO::PARAM_STR);
@@ -171,25 +174,21 @@
 		}
 		unset($rows);
 		if(isset($dbtag_id) && !empty($dbtag_id)) {
-			tagmap($dbtag_id,$memo_id);
+			// t_tagmapのinsert
+			$sql = 'INSERT INTO t_tagmap (tag_id,memo_id) VALUES (?,?)';
+			$stmt = $pdo->prepare($sql);
+			$stmt->bindValue(1, $dbtag_id, PDO::PARAM_STR);
+			$stmt->bindValue(2, $memo_id, PDO::PARAM_STR);
+			$sql_result7 = $stmt->execute();
+			if(!$sql_result7) {
+				// データがなければエラー
+				$error = 'phpエラー : t_tagmapに対してのsql(INSERT)でエラー';
+				print($error);
+				exit();
+			}
 		}
 	} else {
 		// 空白の場合はなにもしない
-	}
-
-	// t_tagsとt_memoの関連付け　t_tagmapにinsert
-	function tagmap($dbtag_id,$memo_id) {
-		$sql = 'INSERT INTO t_tagmap (tag_id,memo_id) VALUES (?,?)';
-		$stmt = $pdo->prepare($sql);
-		$stmt->bindValue(1, $dbtag_id, PDO::PARAM_STR);
-		$stmt->bindValue(2, $memo_id, PDO::PARAM_STR);
-		$sql_result7 = $stmt->execute();
-		if(!$sql_result7) {
-			// データがなければエラー
-			$error = 'phpエラー : t_tagmapに対してのsql(INSERT)でエラー';
-			print($error);
-			exit();
-		}
 	}
 
 	// errorがなければ保存が完了の変数を返す

@@ -494,20 +494,6 @@ $(function() {
 		window.location.href = localUrl;
 	});
 
-
-	// コンテンツの横幅と高さを動的に調整
-	function contentHeight() {
-		// headerの高さ(margin込み)を取得
-		var header = $('header').outerHeight(true);
-		console.log(header);
-		// wrapの高さを取得(padding排除)
-		var wrap = $('#wrap').height();
-		console.log(wrap);
-		var resizeHeight = wrap - header;
-		console.log(resizeHeight);
-		$('#editor-menu,#editor').css({'height' : resizeHeight+'px'});
-	}
-
 	/*-----------------------------------------------------
 	// 追加js
 	-------------------------------------------------------*/
