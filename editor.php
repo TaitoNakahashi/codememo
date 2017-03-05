@@ -167,12 +167,12 @@
 					<form class="popup-form" id="login" name="login" action="" method="post">
 						<div class="text-form">
 							<label class="image-replace email" for="login-email">E-mail</label>
-							<input type="email" class="has-padding" name="user-id" placeholder="E-mail" value="">
+							<input type="email" class="has-padding" name="user-id" placeholder="E-mail" value="ごめんなさい">
 							<span class="error-message">Error message here!</span>
 						</div>
 						<div class="text-form">
 							<label class="image-replace password" for="login-password">Password</label>
-							<input type="password" class="has-padding" name="password" placeholder="Password" value="">
+							<input type="password" class="has-padding" name="password" placeholder="Password" value="許してください">
 							<span class="error-message">Error message here!</span>
 						</div>
 						<div class="remember-form">
@@ -192,17 +192,17 @@
 					<form class="popup-form" id="signup" name="signup" action="" method="post">
 						<div class="text-form">
 							<label class="image-replace username" for="signup-name">Username</label>
-							<input type="text" class="has-padding" name="username" placeholder="Username" value="ago">
+							<input type="text" class="has-padding" name="username" placeholder="Username" value="ごめんなさい">
 							<span class="error-message">Error message here!</span>
 						</div>
 						<div class="text-form">
 							<label class="image-replace email" for="signup-email">E-mail</label>
-							<input type="email" class="has-padding" name="email" placeholder="E-mail" value="ago@ago.jp">
+							<input type="email" class="has-padding" name="email" placeholder="E-mail" value="この処理はできていません">
 							<span class="error-message">Error message here!</span>
 						</div>
 						<div class="text-form">
 							<label class="image-replace password" for="signup-password">Password</label>
-							<input type="password" class="has-padding" name="password" placeholder="Password" value="ago">
+							<input type="password" class="has-padding" name="password" placeholder="Password" value="">
 							<span class="error-message">Error message here!</span>
 						</div>
 						<div class="agree-check">

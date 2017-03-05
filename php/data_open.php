@@ -33,7 +33,7 @@ header('Content-Type:text/html; charset=UTF-8');
 		$no = 0;    //カウント数
 		$tags_disp = '<ul>';
 		foreach($rows1 as $key => $value) {
-			$tags_disp .= '<li class="tag-li filter" data-toggle=".'.$rows1[$key]['tag_name'].'">'.$rows1[$key]['tag_name'].'</li>';
+			$tags_disp .= '<li class="tag-li filter" data-toggle=".'.$rows1[$key]['tag_name'].'">'.$rows1[$key]['tag_name'].'<span></span></li>';
 			$no++;
 			if($no === $rows1_length) {
 				$tags_disp .= '</ul>';

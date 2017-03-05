@@ -143,7 +143,7 @@
 	//　tag名がDB内に存在している場合メッセージ文
 	if($dbtag_name === $tag_name) {
 		$tag_message = '入力されたタグは登録済みでした';
-	} else if(isset($tag_name) && !empty($tag_name)) {
+	} else {
 		// 存在していない場合は登録
 		$sql = 'INSERT INTO t_tags (tag_name,user_id) VALUES (?,?)';
 		$stmt = $pdo->prepare($sql);
@@ -156,6 +156,10 @@
 			print($error);
 			exit();
 		}
+	}
+
+	//t_tagmapを登録、$tag_nameがなければ何もしない
+	if(isset($tag_name) && !empty($tag_name)) {
 		// t_tagから今回のtag_idを取得
 		$sql = 'SELECT tag_id,tag_name FROM t_tags WHERE tag_name = ? AND user_id = ?';
 		$stmt = $pdo->prepare($sql);
@@ -173,6 +177,7 @@
 			$dbtag_name = isset($rows['tag_name']) ? $rows['tag_name'] : '';
 		}
 		unset($rows);
+
 		if(isset($dbtag_id) && !empty($dbtag_id)) {
 			// t_tagmapのinsert
 			$sql = 'INSERT INTO t_tagmap (tag_id,memo_id) VALUES (?,?)';
@@ -186,6 +191,11 @@
 				print($error);
 				exit();
 			}
+		} else {
+			// データがなければエラー
+			$error = 'phpエラー : DB内に該当するタグがありません！';
+			print($error);
+			exit();
 		}
 	} else {
 		// 空白の場合はなにもしない
